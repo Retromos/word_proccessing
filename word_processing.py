@@ -2,8 +2,8 @@
 Beginning of psychological trauma
 """
 
-text = open("words.txt", "r")
-print(text.read())
+# text = open("words.txt", "r")
+# print(text.read())
 
 
 def get_words(file):
@@ -31,7 +31,6 @@ def get_userinput():
         user_input =  input('search for word (enter a valid word): ')
     return user_input
 
-
 def user_word_split(words):
     '''
     if the user enters a space we assume the word is complete
@@ -50,3 +49,13 @@ def user_word_count_sort(words):
     '''
     return  {words.count(word):word for word in words}
      
+
+
+
+def main():
+    words = get_words()
+    while True:
+        user = get_userinput()
+
+
+main
