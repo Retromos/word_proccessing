@@ -11,7 +11,7 @@ def get_words(file):
     function returns a list of all words from the read txt file
     args:: file - file directo
     returns:: a list of words...
-    """
+    """ 
     f = open("words.txt", "r")
     words = f.read()
     f.close()
@@ -31,10 +31,16 @@ def get_userinput():
     """
     take user input then filters by making sure its alphabet
     """
-    user_input = input("search for word: ")
+
+    user_input = input("search for word: ").lower()
     while not user_input or not user_input.isalpha():
         user_input = input("search for word (enter a valid word): ")
     return user_input
+
+def show_filtered_words(user_input,words_list):
+    start_index = [y for x,y in enumerate(words_list) if y.startswith(user_input)][0]
+    words_list = words_list[start_index:]
+    return words_list
 
 
 def user_word_split(words):
@@ -56,13 +62,13 @@ def user_word_count_sort(words):
     """
     return {words.count(word): word for word in words}
 
-    """
 
-
-    def main():
-    words = get_words()
+def main():
+    words = get_words('words.txt')
     while True:
         user = get_userinput()
+        # show_filtered_words(user,words)
 
 
-    """
+
+main()
