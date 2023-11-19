@@ -2,21 +2,17 @@
 Beginning of psychological trauma
 """
 
-# text = open("words.txt", "r")
-# print(text.read())
-file = open("words.txt", "r")
-
 
 def get_words(file):
-    words = file.read().split()
-    return words
+    with open(file) as f:
+        return f.readlines()
+
 
 def show_filtered_words(user_input,words_list):
     start_index = [y for x,y in enumerate(words_list) if y.startswith(user_input)][0]
     words_list = words_list[start_index:]
     return words_list
 
-print(type(get_words(file)))
 
 
 def cleaning_words(words):
@@ -64,3 +60,7 @@ def main():
     while True:
         user = get_userinput()
         # show_filtered_words(user,words)
+
+
+if __name__ == '__main__':
+    main()
