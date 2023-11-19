@@ -58,4 +58,4 @@ def main():
         user = get_userinput()
 
 
-main
+main()
