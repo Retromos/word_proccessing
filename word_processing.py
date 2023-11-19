@@ -8,10 +8,22 @@ def get_words(file):
         return f.readlines()
 
 
+
 def show_filtered_words(user_input,words_list):
-    start_index = [y for x,y in enumerate(words_list) if y.startswith(user_input)][0]
-    words_list = words_list[start_index:]
-    return words_list
+    return  [list_word for list_word in words_list if list_word.startswith(user_input)]
+
+
+
+
+def word_recursion( word_list,user_input=''):
+    if user_input == 'exit' or word_list == []:
+        return word_list
+    user_input = get_userinput()
+    word_list = show_filtered_words(user_input,word_list)
+    print(word_list)
+
+    word_recursion(user_input,word_list)
+
 
 
 
@@ -21,7 +33,7 @@ def cleaning_words(words):
     args:: words list
     returns:: lowers words ready from processing
     """
-    words_lowercase = [word.lower() for word in words]
+    words_lowercase = [word.replace('\n','').lower() for word in words]
     return words_lowercase
 
 
@@ -56,10 +68,13 @@ def user_word_count_sort(words):
 
 
 def main():
-    words = get_words('words.txt')
+    words = cleaning_words(get_words('words.txt'))
     while True:
         user = get_userinput()
-        # show_filtered_words(user,words)
+        words = show_filtered_words(user, words)
+        print(words)
+
+
 
 
 if __name__ == '__main__':
