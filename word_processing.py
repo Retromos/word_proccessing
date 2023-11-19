@@ -4,18 +4,19 @@ Beginning of psychological trauma
 
 # text = open("words.txt", "r")
 # print(text.read())
+file = open("words.txt", "r")
 
 
 def get_words(file):
-    """
-    function returns a list of all words from the read txt file
-    args:: file - file directo
-    returns:: a list of words...
-    """
-    f = open("words.txt", "r")
-    words = f.read()
-    f.close()
+    words = file.read().split()
     return words
+
+def show_filtered_words(user_input,words_list):
+    start_index = [y for x,y in enumerate(words_list) if y.startswith(user_input)][0]
+    words_list = words_list[start_index:]
+    return words_list
+
+print(type(get_words(file)))
 
 
 def cleaning_words(words):
@@ -24,7 +25,8 @@ def cleaning_words(words):
     args:: words list
     returns:: lowers words ready from processing
     """
-    ...
+    words_lowercase = [word.lower() for word in words]
+    return words_lowercase
 
 
 def get_userinput():
@@ -56,13 +58,9 @@ def user_word_count_sort(words):
     """
     return {words.count(word): word for word in words}
 
-    """
 
-
-    def main():
-    words = get_words()
+def main():
+    words = get_words('words.txt')
     while True:
         user = get_userinput()
-
-
-    """
+        # show_filtered_words(user,words)
