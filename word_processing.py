@@ -2,6 +2,9 @@
 Beginning of psychological trauma
 """
 
+# text = open("words.txt", "r")
+# print(text.read())
+
 
 def get_words(file):
     """
@@ -21,13 +24,17 @@ def cleaning_words(words):
     args:: words list
     returns:: lowers words ready from processing
     """
+    ...
 
 
 def get_userinput():
     """
     take user input then filters by making sure its alphabet
     """
-    ...
+    user_input = input("search for word: ")
+    while not user_input or not user_input.isalpha():
+        user_input = input("search for word (enter a valid word): ")
+    return user_input
 
 
 def user_word_split(words):
@@ -46,16 +53,16 @@ def user_word_count_sort(words):
     args:: words list
 
     returns the sorted list of most used words
-    '''
-    return  {words.count(word):word for word in words}
+    """
+    return {words.count(word): word for word in words}
 
     """
 
 
-def main():
+    def main():
     words = get_words()
     while True:
         user = get_userinput()
 
 
-main
+    """
