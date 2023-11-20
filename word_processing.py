@@ -1,6 +1,7 @@
 """
 Beginning of psychological trauma
 """
+used_words = []
 
 
 def get_words(file):
@@ -9,8 +10,16 @@ def get_words(file):
 
 
 
-def show_filtered_words(user_input,words_list):
-    return  [list_word for list_word in words_list if list_word.startswith(user_input)]
+def show_filtered_words(user_input,words_list,index):
+    filtered_words = []
+    for word in words_list:
+        if len(word) >= index:
+            try:
+                if word[index]== user_input:
+                    filtered_words.append(word)
+            except IndexError:
+                pass
+    return  filtered_words
 
 
 
@@ -19,7 +28,7 @@ def word_recursion( word_list,user_input=''):
     if user_input == 'exit' or word_list == []:
         return word_list
     user_input = get_userinput()
-    word_list = show_filtered_words(user_input,word_list)
+    word_list = show_filtered_words(user_input,word_list,)
     print(word_list)
 
     word_recursion(user_input,word_list)
@@ -44,7 +53,7 @@ def get_userinput():
     user_input = input("search for word: ")
     while not user_input or not user_input.isalpha():
         user_input = input("search for word (enter a valid word): ")
-    return user_input
+    return user_input[0]
 
 
 def user_word_split(words):
@@ -69,9 +78,11 @@ def user_word_count_sort(words):
 
 def main():
     words = cleaning_words(get_words('words.txt'))
+    index=0
     while True:
         user = get_userinput()
-        words = show_filtered_words(user, words)
+        words = show_filtered_words(user, words,index)
+        index += 1
         print(words)
 
 
