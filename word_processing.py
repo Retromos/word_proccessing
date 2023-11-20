@@ -79,7 +79,9 @@ def main():
     index=0
     while True:
         user = get_userinput()
-        words = show_filtered_words(user, words,index)
+        words = show_filtered_words(user, used_words,index)
+        if words== []:
+            words = show_filtered_words(user, words,index)
         index += 1
         print(words)
 
