@@ -9,31 +9,26 @@ def get_words(file):
         return f.readlines()
 
 
-
-def show_filtered_words(user_input,words_list,index):
+def show_filtered_words(user_input, words_list, index):
     filtered_words = []
     for word in words_list:
         if len(word) >= index:
             try:
-                if word[index]== user_input:
+                if word[index] == user_input:
                     filtered_words.append(word)
             except IndexError:
                 pass
-    return  filtered_words
+    return filtered_words
 
 
-
-
-def word_recursion( word_list,user_input=''):
+def word_recursion(word_list, user_input=''):
     if user_input == 'exit' or word_list == []:
         return word_list
     user_input = get_userinput()
-    word_list = show_filtered_words(user_input,word_list,)
+    word_list = show_filtered_words(user_input, word_list, )
     print(word_list)
 
-    word_recursion(user_input,word_list)
-
-
+    word_recursion(user_input, word_list)
 
 
 def cleaning_words(words):
@@ -42,16 +37,25 @@ def cleaning_words(words):
     args:: words list
     returns:: lowers words ready from processing
     """
-    return [word.replace('\n','').lower() for word in words]
+    return [word.replace('\n', '').lower() for word in words]
+
 
 def get_userinput():
     """
     take user input then filters by making sure its alphabet
     """
     user_input = input("search for word: ")
-    while not user_input or not user_input.isalpha():
+    while not user_input.isalpha() or user_input == " ":
         user_input = input("search for word (enter a valid word): ")
-    return user_input[0]
+    return user_input
+
+
+def input_identifiier(input_):
+    global used_words
+    if len(input_) > 1:
+        used_words.append(input_)
+    elif len(input_) == 1:
+        return input_
 
 
 def user_word_split(words):
@@ -76,16 +80,16 @@ def user_word_count_sort(words):
 
 def main():
     words = cleaning_words(get_words('words.txt'))
-    index=0
+    index = 0
     while True:
         user = get_userinput()
-        words = show_filtered_words(user, used_words,index)
-        if words== []:
-            words = show_filtered_words(user, words,index)
+
+        if show_filtered_words(user, used_words, index):
+            words = show_filtered_words(user, used_words, index)
+        else:
+            words = show_filtered_words(user, words, index)
         index += 1
         print(words)
-
-
 
 
 if __name__ == '__main__':
