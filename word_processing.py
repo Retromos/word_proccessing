@@ -42,9 +42,7 @@ def cleaning_words(words):
     args:: words list
     returns:: lowers words ready from processing
     """
-    words_lowercase = [word.replace('\n','').lower() for word in words]
-    return words_lowercase
-
+    return [word.replace('\n','').lower() for word in words]
 
 def get_userinput():
     """
